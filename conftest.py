@@ -27,7 +27,6 @@ def browser(request):
 
 @pytest.fixture
 def login_page(browser):
-    # Devuelve una instancia de LoginPage con el navegador configurado
     return LoginPage(browser)
 
 @pytest.fixture

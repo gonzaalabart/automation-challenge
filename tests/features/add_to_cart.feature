@@ -1,19 +1,17 @@
+
 Feature: Agregado de productos al carrito de compra
 
-    Background: Usuario inicio sesion en www.saucedemo.com
+    Background:
+        Given Usuario inicio sesion en www.saucedemo.com
 
-    Scenario: Agregar producto a carrito desde pagina Inventory
-        When Cuando hace click en boton Add to cart de un producto
-        Then Entonces el producto es agregado al carrito del usuario
-        And Y el número del contador incrementa a 1
+    @mi_marcador
+    Scenario: Agregar producto a carrito desde pagina Inventory incrementa el contador
+        When Cuando click en boton Add to cart de Sauce Labs Backpack
+        Then Entonces el número del contador incrementa a 1
 
-    Scenario Outline: Eliminar multiples productos desde pagina Inventory
-        And E hizo click en boton Add to cart de <producto1>
-        And E hizo click en boton Add to cart de <producto2>
+
+    Scenario: Eliminar multiples productos desde pagina Inventory decrece el contador
+        Given E hizo click en boton Add to cart de Sauce Labs Backpack
+        And E hizo click en boton Add to cart de Sauce Labs Bike Light
         When Cuando hace click en boton Remove de ambos productos agregados
-        Then Entonces se vacia el carrito del usuario
-        And Y el numero del contador vuelve a 0
-
-        Examples:
-            | producto1           | producto2             |
-            | Sauce Labs Backpack | Sauce Labs Bike Light |
+        Then Entonces el numero del contador vuelve a 0

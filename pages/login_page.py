@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from .base_page import BasePage
-from config import USERNAME, PASSWORD
+from assets.config import USERNAME, PASSWORD
 
 class LoginPage(BasePage):
     USERNAME_INPUT = (By.NAME, 'user-name')

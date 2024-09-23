@@ -1,48 +1,37 @@
 import pytest
-from pytest_bdd import scenarios, scenario, given, when, then
+from pytest_bdd import scenarios, given, when, then, parsers
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
+from assets.products import PRODUCTS
 
 scenarios("../features/add_to_cart.feature")
-
 
 # Background
 @given("Usuario inicio sesion en www.saucedemo.com")
 def user_logged_in(login_page):
-    login_page.login("standard_user", "secret_sauce")
+    login_page.login()
 
-@when("Cuando hace click en boton Add to cart de un producto")
+@when("Cuando click en boton Add to cart de Sauce Labs Backpack")
 def add_to_cart_inventory(inventory_page):
-    inventory_page
+    inventory_page.add_to_cart("Sauce Labs Backpack")
 
-@then("Entonces el producto es agregado al carrito del usuario")
-def c2():
-    pass
+@then("Entonces el número del contador incrementa a 1")
+def verify_cart_count(inventory_page):
+    assert inventory_page.check_cart_counter() == 1  
 
-@then("Y el número del contador incrementa a 1")
-def e2():
-    pass
+@given("E hizo click en boton Add to cart de Sauce Labs Backpack")
+def add_first_product_to_cart(inventory_page):
+    inventory_page.add_to_cart("Sauce Labs Backpack")
 
-@when("E hizo click en boton Add to cart de otro producto")
-def f2():
-    pass
-
-@given("E hizo click en boton Add to cart de un producto")
-def g2():
-    pass
-
-@given("E hizo click en boton Add to cart de otro producto")
-def h2():
-    pass
+@given("E hizo click en boton Add to cart de Sauce Labs Bike Light")
+def add_second_product_to_cart(inventory_page):
+    inventory_page.add_to_cart("Sauce Labs Bike Light")
 
 @when("Cuando hace click en boton Remove de ambos productos agregados")
-def i2():
-    pass
+def remove_all_products(inventory_page):
+    inventory_page.remove_from_cart("Sauce Labs Backpack")
+    inventory_page.remove_from_cart("Sauce Labs Bike Light")
 
-@then("Entonces se vacia el carrito del usuario")
-def j2():
-    pass
-
-@then("Y el numero del contador vuelve a 0")
-def k2():
-    pass
+@then("Entonces el numero del contador no es visible")
+def verify_cart_count_equals_zero(inventory_page):
+    assert inventory_page.is_cart_counter_visible() # deberia ser assert not, pero queremos que falle para el screenshot
