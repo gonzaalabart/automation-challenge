@@ -1,12 +1,14 @@
 import pytest
 from pytest_bdd import scenarios, scenario, given, when, then
+from pages.login_page import LoginPage
 
 scenarios("../features/login.feature")
 
 # Fixtures
 @given("Dado que usuario accede a www.saucedemo.com")
-def a():
-    pass
+def go_to_saucedemo(browser):
+    login_page = LoginPage(browser)
+    login_page.navigate_login()
 
 @when("Cuando ingresa credenciales validas")
 def b():
