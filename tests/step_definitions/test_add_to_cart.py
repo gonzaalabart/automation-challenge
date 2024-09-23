@@ -1,16 +1,19 @@
 import pytest
 from pytest_bdd import scenarios, scenario, given, when, then
+from pages.login_page import LoginPage
+from pages.inventory_page import InventoryPage
 
 scenarios("../features/add_to_cart.feature")
 
-@given("Dado que usuario inicio sesion en www.saucedemo.com")
-def a2():
-    pass
 
+# Background
+@given("Usuario inicio sesion en www.saucedemo.com")
+def user_logged_in(login_page):
+    login_page.login("standard_user", "secret_sauce")
 
 @when("Cuando hace click en boton Add to cart de un producto")
-def b2():
-    pass
+def add_to_cart_inventory(inventory_page):
+    inventory_page
 
 @then("Entonces el producto es agregado al carrito del usuario")
 def c2():
