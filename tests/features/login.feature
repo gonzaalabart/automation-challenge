@@ -1,3 +1,4 @@
+@UI-testing
 Feature: Login en e-commerce Sauce Demo
 
     Scenario: Inicio de sesion con credenciales correctas

@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.edge.service import Service as EdgeService
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
+import requests
 
 
 def pytest_addoption(parser):
@@ -32,3 +33,11 @@ def login_page(browser):
 @pytest.fixture
 def inventory_page(browser):
     return InventoryPage(browser)
+
+
+@pytest.fixture
+def api_response():
+    url = "https://www.mercadolibre.com.ar/menu/departments"
+    response = requests.get(url)
+    return response  #
+
