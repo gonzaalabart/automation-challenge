@@ -8,7 +8,7 @@ def a2():
     pass
 
 
-@when("E hizo click en boton Add to cart de un producto")
+@when("Cuando hace click en boton Add to cart de un producto")
 def b2():
     pass
 
@@ -24,7 +24,7 @@ def e2():
 def f2():
     pass
 
-@given("Cuando hace click en boton Add to cart de un producto")
+@given("E hizo click en boton Add to cart de un producto")
 def g2():
     pass
 
